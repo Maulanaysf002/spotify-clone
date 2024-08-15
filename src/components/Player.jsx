@@ -1,27 +1,32 @@
-import { assets, songsData } from '../assets/assets';
+import { useContext } from 'react';
+import { assets } from '../assets/assets';
+import { PlayerContext } from '../context/PlayerContext';
 
 const Player = () => {
+  // definisikan context
+  const { track, seekBar, seekBg, Play, Pause, playStatus } = useContext(PlayerContext);
+
   return (
     <div className="bg-black h-[10%] flex justify-between items-center text-white px-4">
       <div className="lg:flex items-center gap-4 hidden">
-        <img src={songsData[0].image} alt="image" className="w-12" />
+        <img src={track.image} alt="image" className="w-12" />
         <div>
-          <p>{songsData[0].name}</p>
-          <p>{songsData[0].desc.slice(0, 12)}</p>
+          <p>{track.name}</p>
+          <p>{track.desc.slice(0, 12)}</p>
         </div>
       </div>
       <div className="flex flex-col gap-1 items-center m-auto">
         <div className="flex gap-4">
           <img src={assets.shuffle_icon} alt="" className="w-4 cursor-pointer" />
           <img src={assets.prev_icon} alt="" className="w-4 cursor-pointer" />
-          <img src={assets.play_icon} alt="" className="w-4 cursor-pointer" />
+          {playStatus ? <img src={assets.pause_icon} alt="" className="w-4 cursor-pointer" onClick={Pause} /> : <img src={assets.play_icon} alt="" className="w-4 cursor-pointer" onClick={Play} />}
           <img src={assets.next_icon} alt="" className="w-4 cursor-pointer" />
           <img src={assets.loop_icon} alt="" className="w-4 cursor-pointer" />
         </div>
         <div className="flex items-center gap-5">
           <p>1:06</p>
-          <div className="w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer">
-            <hr className="h-1 border-none w-20 bg-green-800 rounded-full" />
+          <div ref={seekBg} className="w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer">
+            <hr ref={seekBar} className="h-1 border-none w-20 bg-green-800 rounded-full" />
           </div>
           <p>3:20</p>
         </div>
