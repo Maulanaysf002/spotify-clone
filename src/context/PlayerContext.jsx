@@ -14,6 +14,7 @@ const PlayerContextProvider = (props) => {
   // use state
   const [track, setTrack] = useState(songsData[0]);
   const [playStatus, setPlayStatus] = useState(false);
+  const [counter, setCounter] = useState(true);
 
   // function play
   const Play = () => {
