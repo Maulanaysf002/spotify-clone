@@ -19,7 +19,7 @@ const DisplayHome = () => {
         <h1 className="text-white text-2xl my-5 font-bold ">Today`s Biggest Hit</h1>
         <div className="flex overflow-auto">
           {songsData.map((item, index) => {
-            return <SongItem key={index} image={item.image} name={item.name} desc={item.desc} />;
+            return <SongItem key={index} image={item.image} name={item.name} desc={item.desc} id={item.id} />;
           })}
         </div>
       </div>
